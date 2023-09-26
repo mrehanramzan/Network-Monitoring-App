@@ -21,6 +21,16 @@ To install our fyp:
 ```bash
   sudo pip install pytest
 ```
+
+to install libraries: psychopg2 and flask_mysqldb
+```bash
+  sudo apt install libpq-dev pkg-config libmysqlclient-dev
+```
+then
+```bash
+  pip install psychopg2 flask_mysqldb
+```
+
 ### For bcc:
 ```bash
   sudo apt install -y bison build-essential cmake flex git libedit-dev libllvm11 llvm-11-dev libclang-11-dev python zlib1g-dev libelf-dev libfl-dev libluajit-5.1-dev 
