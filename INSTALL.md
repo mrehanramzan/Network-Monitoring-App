@@ -49,24 +49,22 @@ sudo apt-get install arping libdebuginfod-dev bison clang-format cmake dh-python
 ```
 
 
-### Install this version of bcc
-
+### Install latest version of bcc from source
 
 ```bash
-git clone https://github.com/iovisor/bcc/
-```
+git clone https://github.com/iovisor/bcc/ \
 ### Directory Setup:
-cd bcc
-mkdir build; cd /build
-cmake ..
-<!-- check if any library not installed in output -->
-make
-sudo make install
-cmake -DPYTHON_CMD=python3
-pushd src/python/
-make
-sudo make install
-popd 
+cd bcc; mkdir build; cd /build \
+cmake .. \
+<!-- check if any library not installed in output --> \
+make \
+sudo make install \
+cmake -DPYTHON_CMD=python3 \
+pushd src/python/ \
+make \
+sudo make install \
+popd \
 
+``` 
 source: https://github.com/iovisor/bcc/blob/master/INSTALL.md#debian---source 
 /usr/lib/python3/dist-packages
