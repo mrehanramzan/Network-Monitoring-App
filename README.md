@@ -12,6 +12,22 @@ Due to rapid rise in the use of internet technology, there is an increase in num
 
 [Installation Instructions](/INSTALL.md)
 
+## Running the project
+
+change the device name on line #11 of home/backend.py file
+
+you can know the device names by running the following command
+
+```bash
+ip link show
+```
+
+run this command in the project folder
+
+```bash
+sudo python run.py
+```
+
 ## Authors
 
 - [Rehan Ramzan](https://github.com/mrehanramzan/Network-Monitoring-App)
