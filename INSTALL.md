@@ -56,7 +56,7 @@ git clone https://github.com/iovisor/bcc/ \
 ### Directory Setup:
 cd bcc; mkdir build; cd /build \
 cmake .. \
-<!-- check if any library not installed in output --> \
+# check if any library not installed in output \
 make \
 sudo make install \
 cmake -DPYTHON_CMD=python3 \
@@ -65,6 +65,22 @@ make \
 sudo make install \
 popd \
 
+sudo apt-get install linux-headers-$(uname -r)
+
 ``` 
-source: https://github.com/iovisor/bcc/blob/master/INSTALL.md#debian---source 
-/usr/lib/python3/dist-packages
+source: https://github.com/iovisor/bcc/blob/master/INSTALL.md#debian---source \
+
+### check this installation in python3 environment
+
+```bash
+ls /usr/lib/python3/dist-packages | grep bcc
+```
+if there is folder named bcc then fine
+
+otherwise create a folder named `bcc` in `/usr/lib/python3/dist-packages` folder
+
+then go to the build folder of bcc and run this command
+
+```bash
+sudo cp -r src/python/bcc-python3/bcc/* /usr/lib/python3/dist-packages/bcc
+```
