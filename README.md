@@ -10,7 +10,7 @@ Due to rapid rise in the use of internet technology, there is an increase in num
 
 ## installation
 
-[Installation Instructions](INSTALL.md)
+[Installation Instructions](blob/main/INSTALL.md)
 
 ## Authors
 
