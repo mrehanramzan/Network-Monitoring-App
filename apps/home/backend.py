@@ -7,7 +7,8 @@ import ipaddress
 import socket, bcc
 
 class backend:
-    device = "ens33"
+    # enter your device name here
+    device = "lo"
     value = 1
     runningDomainList = list()
     blockedDoaminList = list()#["www.facebook.com", "www.youtube.com"]

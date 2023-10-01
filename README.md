@@ -1,8 +1,6 @@
-
 # Network Flow Control Using Packet Header Information
 
 Due to rapid rise in the use of internet technology, there is an increase in number of cyber attacks. This project successfully provides monitioring and blocking facilities through a simplicit GUI. 
-
 
 ## Features
 
@@ -10,47 +8,9 @@ Due to rapid rise in the use of internet technology, there is an increase in num
 - Providing fine-grained access control
 - Interactive and user-friendly GUI
 
+## installation
 
-## Installation:
-
-To install our fyp:
-
-```bash
-  sudo pip install nfstream
-```
-```bash
-  sudo pip install pytest
-```
-
-to install libraries: psychopg2 and flask_mysqldb
-```bash
-  sudo apt install libpq-dev pkg-config libmysqlclient-dev
-```
-then
-```bash
-  pip install psychopg2 flask_mysqldb
-```
-
-### For bcc:
-```bash
-  sudo apt install -y bison build-essential cmake flex git libedit-dev libllvm11 llvm-11-dev libclang-11-dev python zlib1g-dev libelf-dev libfl-dev libluajit-5.1-dev 
-```
-### Install this version of bcc
-
-https://github.com/iovisor/bcc/releases/tag/v0.21.0
-
-### Directory Setup:
-mkdir bcc/build;\
-cd bcc/build\
-cmake ..\
-make\
-sudo make install\
-cmake -DPYTHON_CMD=python3 ..\
-pushd src/python/\
-make\
-sudo make install\
-popd 
-
+[Installation Instructions](install.md)
 
 ## Authors
 
