@@ -5,6 +5,7 @@ from bcc import BPF
 from time import sleep
 import ipaddress
 import socket, bcc
+import tldextract
 
 class backend:
     # enter your device name here
@@ -25,23 +26,27 @@ class backend:
         self.b.attach_xdp(self.device, fn, 0)
         self.ipmap = self.b["block_ip"]
         print("eBPF has been attached with XDP")
-        
+
+    def get_app_name_from_url(self,url):
+        extracted_info = tldextract.extract(url)
+        return extracted_info.domain
+    
     def dpi_func(self):
         flow_streamer = NFStreamer(source=self.device, statistical_analysis=False, idle_timeout=5, performance_report=0)
         for flow in flow_streamer:
-            print(flow.requested_server_name)
-            if flow.requested_server_name in self.blockedDoaminList and "DNS." not in flow.application_name:
+            app_name = self.get_app_name_from_url(flow.requested_server_name)
+            if app_name in self.blockedDoaminList and "DNS." not in flow.application_name:
                 ip = int(ipaddress.ip_address(flow.dst_ip))
-                print("\n>>>> the ip to filter is %s/%u/%s <<<<<\n" %(flow.dst_ip, ip, flow.requested_server_name))
+                print("\n>>>> the ip to filter is %s/%u/%s <<<<<\n" %(flow.dst_ip, ip, app_name))
                 self.ipmap[c_uint32(ip)] = c_int(self.value)
                 
-            if flow.requested_server_name not in self.runningDomainList and flow.requested_server_name not in self.blockedDoaminList and len(flow.requested_server_name) != 0:
-                self.runningDomainList.append(flow.requested_server_name)
+            if app_name not in self.runningDomainList and app_name not in self.blockedDoaminList and len(app_name) != 0:
+                self.runningDomainList.append(app_name)
 
-            if flow.requested_server_name in self.totalPacketsDict:
-                self.totalPacketsDict[flow.requested_server_name] += flow.bidirectional_packets
+            if app_name in self.totalPacketsDict:
+                self.totalPacketsDict[app_name] += flow.bidirectional_packets
             else:
-                self.totalPacketsDict[flow.requested_server_name] = flow.bidirectional_packets
+                self.totalPacketsDict[app_name] = flow.bidirectional_packets
                 
     def closeXDP_func(self):
         print("Removing XDP HOOK")
