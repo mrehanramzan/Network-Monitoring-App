@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 """
-Copyright (c) 2019 - present AppSeed.us
+Copyright (c) 2020 - present AppSeed.us
 """
 
 from flask_login import UserMixin
